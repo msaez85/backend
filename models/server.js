@@ -2,6 +2,7 @@ const express = require('express'); //importo express dentro de una constante, e
 const cors = require('cors');
 const body = require('body-parser');
 const bodyParser = require('body-parser');
+const {dbConnection} = require('../database/config');
 
 class Server {
     constructor() {
@@ -10,6 +11,10 @@ class Server {
         this.usuariosPath = "/api";
         this.middlewares();
         this.routes();
+        this.conectarDB();
+    }
+    async conectarDB(){
+        await dbConnection();
     }
 
     middlewares() {
